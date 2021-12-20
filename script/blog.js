@@ -81,9 +81,9 @@ function renderBlog() {
                 <button class="btn-post">Post Blog</button>
                 </div>
                 <h2>
-                <a href="blog-detail.html" target="_blank"
-                    >${blogs[i].title}</a
-                >
+                    <a href="blog-detail.html" target="_blank">
+                    ${blogs[i].title}
+                    </a>
                 </h2>
                 <div class="detail-blog-content">
                   ${getFullTime(blogs[i].postAt)} | ${blogs[i].author}
@@ -99,13 +99,17 @@ function renderBlog() {
 }
 
 let month = [
-    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+    ]
 
 function getFullTime(time) {
+
+    /* This is new Date() default value:
+    Mon Dec 20 2021 09:05:06 GMT+0700 (Waktu Indonesia Barat)*/
     
-    let date = time.getDate(); //tanggal getDate()
-    let monthIndex = time.getMonth();//Bulan getMonth()
-    let year = time.getFullYear()//Tahun getFullYear()
+    let date = time.getDate() //tanggal getDate()
+    let monthIndex = time.getMonth() //Bulan getMonth()
+    let year = time.getFullYear() //Tahun getFullYear()
 
     let hours = time.getHours() //Jam getHours()
     let minutes = time.getMinutes() //Menit getMinutes()
@@ -122,28 +126,29 @@ function getDistanceDate(time) {
     
     let distance = timeNow - timePost;
 
-    let milliSecond = 1000 // milisecond in 1 second
-    let secondInHours = 3600 // second in 1 hour
+    let miliSecond = 1000 // milisecond in 1 second
+    let secondsInMinute = 60 // second in 1 minute
+    let minutesInHour = 60 // minute in 1 hour
     let hoursInDay = 23 // hours in 1 day
 
-    let distanceDay = Math.floor(distance / (1000 * 3600 * 23))
+    let distanceDay = Math.floor(distance / (miliSecond * secondsInMinute * minutesInHour * hoursInDay))
 
     if (distanceDay >= 1) {
         return `${distanceDay} days ago`
     } else {
         //convert to hours
-        let distanceHours = Math.floor(distance / (1000 * 3600))
+        let distanceHours = Math.floor(distance / (miliSecond * secondsInMinute * minutesInHour))
 
         if (distanceHours >= 1) {
             return`${distanceHours} hours ago`
         } else {
             //convert to minutes
-            let distanceMinutes = Math.floor(distance / (1000 * 60))
+            let distanceMinutes = Math.floor(distance / (miliSecond * secondsInMinute))
 
-            if (distanceMinutes) {
+            if (distanceMinutes >= 1) {
                 return `${distanceMinutes} minutes ago`
             } else {
-                let distanceSecond = Math.floor(distance / 1000)
+                let distanceSecond = Math.floor(distance / miliSecond)
                 
                 return `${distanceSecond} seconds ago`
             }

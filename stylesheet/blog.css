@@ -160,10 +160,15 @@ nav {
     color: #414141;
     padding: 8.5px;
     border: 1px solid #bbbbbb;
-    border-radius: 0 5px 5px 0;
+    border-radius: 5px;
     background: #e0e0e0;
     box-shadow: inset  3px 3px 4px #bebebe,
              inset -3px -3px 4px #ffffff;
+}
+
+.blog-left form .input-group input:focus, textarea:focus {
+    outline: none;
+    border: 1px solid #d1d1d1;
 }
 
 .blog-left form .input-group .input-blog-image-group {
@@ -221,6 +226,7 @@ nav {
     flex: 70%;
     display: flex;
     padding: 0 15px;
+    height: 80vh;
 }
 
 .blog-right .blog-list-item {
@@ -279,6 +285,13 @@ nav {
     border-radius: 5px;
     box-shadow:  3px 3px 4px #bebebe,
              -3px -3px 4px #ffffff;
+}
+
+.blog-right .btn-group button:hover {
+    border: 1px solid #d1d1d1;
+    border-radius: 8px;
+    box-shadow: inset  3px 3px 4px #bebebe,
+              inset -3px -3px 4px #ffffff;
 }
 
 .blog-right h2 a {
